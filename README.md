@@ -10,22 +10,18 @@ Tried Redsync example.
 
 ## Desctiption
 
-ServerAとServerBでは同様のサービスが動作しており、そのサービスは次のような動作をする
+![figure1](png/figure1.png)
 
-1. リクエストの受信
-2. ロックの取得
-3. Verificationサービスへロック取得成功の通知
-4. ランダムなsleep
-5. Verificationサービスへロック解除開始の通知
-6. ロックの開放
-7. レスポンスの返却
+Same service is running on Server A and Server B
 
-ロックにはServerに関係なく同一のキーが使われる想定です
+Service operates as follows:
 
-Verificationサービスでは上記の3,5の通知が同一サービスから連続して通知されることを期待する
-もし、連続した通知が確認でいない場合エラーを返す
+1. Listen request from client
+2. Get lock by redsync library
+3. Release lock by redsync library
+4. Return response to client
 
-このサンプルではVerificationサービスが期待した動作をするかどうかを検証するとともに、高負荷時のサーバーおよびRedisの動作を確認する
+The same key is used for locking regardless of Server
 
 ## Reference
 

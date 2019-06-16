@@ -1,0 +1,28 @@
+version: '2'
+services:
+  server_a:
+    build:
+      context: .
+      dockerfile: serverDockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - redis
+    environment:
+      - LISTEN_PORT=3001
+      - REDIS_HOST=redis:6379
+
+  server_b:
+    build:
+      context: .
+      dockerfile: serverDockerfile
+    ports:
+      - "3002:3002"
+    depends_on:
+      - redis
+    environment:
+      - LISTEN_PORT=3002
+      - REDIS_HOST=redis:6379
+
+  redis:
+    image: redis:latest

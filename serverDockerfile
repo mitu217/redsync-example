@@ -1,0 +1,14 @@
+FROM  golang:1.12-alpine
+
+RUN apk add --no-cache git
+
+RUN mkdir -p $GOROOT/src/github.com/Mitu217/redsync-example
+WORKDIR $GOROOT/src/github.com/Mitu217/redsync-example
+COPY go.mod .
+COPY go.sum .
+
+RUN go mod download
+
+COPY . .
+
+CMD ["go", "run", "./server/server-redsync.go"]

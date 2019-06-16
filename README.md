@@ -1,4 +1,4 @@
-# RedSync example
+# Redsync Example
 
 Tried Redsync example.
 
